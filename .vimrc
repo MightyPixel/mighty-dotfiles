@@ -84,6 +84,7 @@ color wombat256mod
 
 " Enable syntax highlighting
 " You need to reload this file for the change to apply
+set nocompatible
 filetype off
 filetype plugin indent on
 syntax on
@@ -130,11 +131,32 @@ set nowritebackup
 set noswapfile
 
 
+
+" PACKET MANAGERS
+" Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles:
+"
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp.vim'
+Bundle 'klen/python-mode'
+
+
+
+filetype plugin indent on     " required!
+
+
 " Setup Pathogen to manage your plugins
 " mkdir -p ~/.vim/autoload ~/.vim/bundle
 " curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
 " Now you can install any plugin into a .vim/bundle/plugin-name/ folder
-call pathogen#infect()
+" call pathogen#infect()
 
 
 " ============================================================================
