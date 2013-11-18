@@ -88,6 +88,9 @@ syntax on
 colorscheme jellybeans
 set guiheadroom=0
 
+" Rebind <Leader> key
+let mapleader = ";"
+
 " Pathogen
 execute pathogen#infect()
 
@@ -95,7 +98,12 @@ execute pathogen#infect()
 let Tlist_Compact_Format = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
-nnoremap <C-l> :TlistToggle<CR>
+nnoremap <C-o> :TlistToggle<CR>
+
+" Easymotion
+" let g:EasyMotion_leader_key = '<Leader>'
+" NERDTree
+nmap <Leader>t :NERDTreeToggle<CR>
 
 " Better copy & paste
 " When you want to paste large blocks of code into vim, press F2 before you
@@ -103,14 +111,11 @@ nnoremap <C-l> :TlistToggle<CR>
 set pastetoggle=<F2>
 set clipboard=unnamed
 
-" Rebind <Leader> key
-let mapleader = ";"
-
 " Bind nohl
 " Removes highlight of your last search
 noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
+" inoremap <C-n> :nohl<CR>
 
 " Quick quit command
 noremap <Leader>e :quit<CR>  " Quit current window
@@ -126,6 +131,7 @@ map <c-h> <c-w>h
 " easier moving between tabs
 map <Leader>h <esc>:tabprevious<CR>
 map <Leader>l <esc>:tabnext<CR>
+map <C-T> <esc>:tabnew<CR>
 
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
@@ -154,6 +160,13 @@ let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
+
+" settings for jedi-vim
+" cd ~/.vim/bundle
+" git clone git://github.com/davidhalter/jedi-vim.git
+let g:jedi#related_names_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
 
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 

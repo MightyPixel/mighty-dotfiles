@@ -7,7 +7,7 @@ bindkey -v
 autoload -U promptinit
 promptinit
 autoload -U colors && colors
-PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}%#"
+PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg_no_bold[yellow]%}%1~ %{$reset_color%}%#"
 RPROMPT="[%{$fg_no_bold[yellow]%}%?%{$reset_color%}]"
 
 # End of lines configured by zsh-newuser-install
@@ -70,6 +70,7 @@ key[PageDown]=${terminfo[knp]}
 # alias
 alias ls="ls --color=auto"
 alias clr="clear"
+alias vimbundle="cd ~/.vim/bundle"
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
