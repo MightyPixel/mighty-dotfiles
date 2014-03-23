@@ -34,3 +34,7 @@ git clone https://github.com/scrooloose/syntastic.git
 git clone git@github.com:Chiel92/vim-autoformat.git
 git clone git@github.com:nvie/vim-flake8.git
 git clone git@github.com:airblade/vim-gitgutter.git
+
+git clone git://github.com/tpope/vim-fireplace.git
+git clone git://github.com/tpope/vim-classpath.git
+git clone git://github.com/guns/vim-clojure-static.git
