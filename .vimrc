@@ -136,6 +136,9 @@ map <C-T> <esc>:tabnew<CR>
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
 
+" Search
+map <F4> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
 " then press ``>`` several times.
