@@ -12,7 +12,7 @@ RPROMPT="[%{$fg_no_bold[yellow]%}%?%{$reset_color%}]"
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/baron/.zshrc'
+# zstyle :compinstall filename '/home/baron/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -68,9 +68,11 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
 
 # alias
-alias ls="ls --color=auto"
+# alias ls="ls --color=auto"
 alias clr="clear"
 alias vimbundle="cd ~/.vim/bundle"
+
+# export ls="ls --color=auto"
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -88,4 +90,3 @@ fi
 [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"    history-beginning-search-backward
 [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}"  history-beginning-search-forward
 
-export ls="ls--color=auto"
