@@ -6,6 +6,7 @@
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
+set shell=bash
 
 "set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
 "filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]

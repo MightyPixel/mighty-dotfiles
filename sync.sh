@@ -34,3 +34,6 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+mkdir -p ~/.config/fish
+ln -s $dir/config.fish ~/.config/fish/config.fish
