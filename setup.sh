@@ -45,5 +45,4 @@ git clone git@github.com:airblade/vim-gitgutter.git
 git clone git://github.com/tpope/vim-fireplace.git
 git clone git://github.com/tpope/vim-classpath.git
 git clone git://github.com/guns/vim-clojure-static.git
-
-
+git clone https://github.com/rizzatti/dash.vim.git
