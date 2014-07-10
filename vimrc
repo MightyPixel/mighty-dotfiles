@@ -55,7 +55,13 @@ fu! UseTabs()
     set tabstop=4
     set shiftwidth=4
 endfunction
- 
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = '\v[\/]\node_modules$'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 
 set autoindent
 set smarttab        " When on, a <Tab> in front of a line inserts blanks
