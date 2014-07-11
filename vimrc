@@ -127,6 +127,9 @@ set mouse=a         " Enable the use of the mouse.
 filetype plugin indent on
 syntax on
 
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['jshint']
+
 colorscheme jellybeans
 set guiheadroom=0
 
