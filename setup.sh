@@ -47,4 +47,7 @@ git clone git://github.com/tpope/vim-classpath.git
 git clone git://github.com/guns/vim-clojure-static.git
 git clone https://github.com/rizzatti/dash.vim.git
 
+# WEB
 git clone git@github.com:marijnh/tern_for_vim.git
+git clone git://github.com/tpope/vim-surround.git
+git clone git@github.com:rstacruz/sparkup.git
