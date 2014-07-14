@@ -60,3 +60,6 @@ git clone https://github.com/rizzatti/dash.vim.git
 git clone git@github.com:marijnh/tern_for_vim.git
 git clone git://github.com/tpope/vim-surround.git
 git clone git@github.com:rstacruz/sparkup.git
+
+
+cd ~/.vim/bundle/tern_for_vim; npm install
