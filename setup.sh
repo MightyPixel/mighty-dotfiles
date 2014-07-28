@@ -60,6 +60,8 @@ git clone https://github.com/rizzatti/dash.vim.git
 git clone git@github.com:marijnh/tern_for_vim.git
 git clone git://github.com/tpope/vim-surround.git
 git clone git@github.com:rstacruz/sparkup.git
+git clone https://github.com/lilydjwg/colorizer.git
+git clone https://github.com/iandoe/vim-osx-colorpicker.git # dev mode for colour picker -> http://download.panic.com/picker/
 
 
 cd ~/.vim/bundle/tern_for_vim; npm install

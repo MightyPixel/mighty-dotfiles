@@ -132,6 +132,8 @@ let g:syntastic_python_checkers = ['jshint']
 
 colorscheme jellybeans
 set guiheadroom=0
+" paste colour -> :ColorHEX / :ColorRGB
+let g:colorpicker_app = 'iTerm.app'
 
 " Rebind <Leader> key
 let mapleader = ";"
