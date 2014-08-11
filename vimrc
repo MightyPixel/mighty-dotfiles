@@ -36,8 +36,8 @@ set shell=bash
 " For multi-byte character support (CJK support, for example):
 "set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
        
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-set list 
+" set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+" set list 
 
 fu! UseSpaces()
     set tabstop=4       " Number of spaces that a <Tab> in the file counts for.

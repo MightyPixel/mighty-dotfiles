@@ -34,6 +34,7 @@ git clone git@github.com:tpope/vim-fugitive.git
 
 git clone https://github.com/garbas/vim-snipmate.git
 git clone https://github.com/honza/vim-snippets.git
+git clone git://github.com/nathanaelkane/vim-indent-guides.git
 
 git clone git@github.com:Lokaltog/vim-easymotion.git
 git clone https://github.com/scrooloose/nerdcommenter.git
@@ -48,6 +49,8 @@ curl -o ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_s
 
 git clone https://github.com/scrooloose/syntastic.git
 git clone git@github.com:Chiel92/vim-autoformat.git
+git clone git://github.com/godlygeek/tabular.git
+git clone git://github.com/nathanaelkane/vim-indent-guides.git
 git clone git@github.com:nvie/vim-flake8.git
 git clone git@github.com:airblade/vim-gitgutter.git
 
