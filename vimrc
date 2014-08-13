@@ -39,6 +39,8 @@ set shell=bash
 " set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 " set list 
 
+" Text Edditing
+
 fu! UseSpaces()
     set tabstop=4       " Number of spaces that a <Tab> in the file counts for.
 
@@ -55,6 +57,20 @@ fu! UseTabs()
     set tabstop=4
     set shiftwidth=4
 endfunction
+
+vmap r "_dP
+vnoremap <Leader>d "_d
+
+if exists(":Tabularize")
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a/ :Tabularize /\/\/<CR>
+    vmap <Leader>a/ :Tabularize /\/\/<CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+nmap <F8> :TagbarToggle<CR>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
@@ -161,8 +177,8 @@ set clipboard=unnamed
 
 " Bind nohl
 " Removes highlight of your last search
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
+noremap <Leader>n :nohl<CR>  " Clear hightlight
+vnoremap <Leader>n :nohl<CR> " Clear hightlight
 " inoremap <C-n> :nohl<CR>
 
 " Quick quit command

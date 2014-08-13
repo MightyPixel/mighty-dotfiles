@@ -35,6 +35,7 @@ git clone git@github.com:tpope/vim-fugitive.git
 git clone https://github.com/garbas/vim-snipmate.git
 git clone https://github.com/honza/vim-snippets.git
 git clone git://github.com/nathanaelkane/vim-indent-guides.git
+git clone git@github.com:terryma/vim-multiple-cursors.git
 
 git clone git@github.com:Lokaltog/vim-easymotion.git
 git clone https://github.com/scrooloose/nerdcommenter.git
@@ -66,5 +67,5 @@ git clone git@github.com:rstacruz/sparkup.git
 git clone https://github.com/lilydjwg/colorizer.git
 git clone https://github.com/iandoe/vim-osx-colorpicker.git # dev mode for colour picker -> http://download.panic.com/picker/
 
-
 cd ~/.vim/bundle/tern_for_vim; npm install
+npm install -g git://github.com/ramitos/jsctags.git
