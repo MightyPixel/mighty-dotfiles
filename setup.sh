@@ -15,12 +15,14 @@ mkdir -p ~/.vim/colors/tmp; \
     rm -rf ~/.vim/colors/tmp;
 
 curl -o ~/.vim/colors/wombat256.vim 'http://www.vim.org/scripts/download_script.php?src_id=13400'
+curl -o ~/.vim/colors/wombat256mod.vim 'https://raw.githubusercontent.com/newzealandpaul/wombat256mod/master/colors/wombat256mod.vim'
 
 # Install native dependencies
 # TODO: check package manager
 brew install ack
 
 cd ~/.vim/bundle
+git clone git@github.com:nvie/vim-togglemouse.git
 # File Managment
 git clone git@github.com:kien/ctrlp.vim.git
 git clone git@github.com:mileszs/ack.vim.git

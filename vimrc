@@ -5,25 +5,74 @@
 "
 " Sources 
 " See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
+" https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
+" https://github.com/amix/vimrc/blob/master/vimrcs/extended.vim
+
+set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
 
 " FILES:
 " For multi-byte character support (CJK support, for example):
 " set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+"
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
+cmap w!! w !sudo tee % >/dev/null
+set autochdir " change into the folder of the file of the buffer
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Turn persistent undo on 
+"    means that you can undo even when you close a buffer/VIM
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+try
+    set undodir=~/.vim_runtime/temp_dirs/undodir
+    set undofile
+catch
+endtry
 
 filetype plugin indent on
-filetype indent on        " activates indenting for files
+autocmd filetype python set expandtab
+
 syntax on                 " Vim  overrule your settings with the defaults
 syntax enable             " enable syntax highlighting (previously syntax on).
 
 
 " USEFUL SETTINGS:
-set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
 set shell=bash
 set history=700
 set undolevels=700
+
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+
+" Bash like keys for the command line
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-K> <C-U>
+
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+
+" Close all the
+" buffers
+map <leader>ba :1,1000 bd!<cr>
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" For regular expressions turn magic on
+set magic
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
 
 " Better copy & paste
 " When you want to paste large blocks of code into vim, press F2 before you
@@ -34,6 +83,9 @@ set clipboard=unnamed
 
 " Rebind <Leader> key
 let mapleader = ";"
+map <Leader>r <esc>:so $MYVIMRC<CR>
+nmap <leader>w :w!<cr>
+" command W w !sudo tee % > /dev/null " :W sudo saves the file 
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
@@ -63,8 +115,18 @@ noremap <Leader>E :qa!<CR>   " Quit all windows
 
 
 " USER INTERFACE:
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+set ruler
+
+" Turn on the WiLd menu
+set wildmenu
+
 "" set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:< " show whitespace
 " set list 
+set list
+set listchars=tab:\|-,trail:_,extends:#,nbsp:_
 
 
 set laststatus=2           "  last window always has a statusline
@@ -84,6 +146,33 @@ set background=dark
 set guiheadroom=0
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+if has("mac") || has("macunix")
+  nmap <D-j> <M-j>
+  nmap <D-k> <M-k>
+  vmap <D-j> <M-j>
+  vmap <D-k> <M-k>
+endif
+
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
 set softtabstop=4 " unify
 set shiftwidth=4  " Number of spaces to use for each step of (auto)indent.
@@ -112,7 +201,7 @@ endfunction
 
 " COMMANDS:
 vmap r \"_dP " delete
-vnoremap <Leader>d \"_d
+vmap <Leader>d \"_d
 
 
 set autoindent
@@ -202,15 +291,30 @@ nmap <Leader>t :NERDTreeToggle<CR>
 " Settings for ctrlp
 "let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\node_modules$'
+let g:ctrlp_custom_ignore = '\v[\/]\bower_components$'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 let g:ctrlp_max_height = 30
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*.pyc
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+
 set wildignore+=*_build/*
-set wildignore+=*bower_components/*
+set wildignore+=*/bower_components/*
+set wildignore+=*/node_modules/*
+set wildignore+=*/.git/*
 set wildignore+=*/coverage/*
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+	set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+else
+	set wildignore+=.git\*,.hg\*,.svn\*
+endif
 
 " Settings for tabularize
 " if exists(":Tabularize")
