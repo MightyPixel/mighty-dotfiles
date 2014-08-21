@@ -200,8 +200,8 @@ endfunction
 
 
 " COMMANDS:
-vmap r \"_dP " delete
-vmap <Leader>d \"_d
+vnoremap r "_dP
+vnoremap <Leader>d \"_d
 
 
 set autoindent
