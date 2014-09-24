@@ -23,6 +23,7 @@ brew install ack
 
 cd ~/.vim/bundle
 git clone git@github.com:nvie/vim-togglemouse.git
+git clone git@github.com:vim-scripts/YankRing.vim.git
 # File Managment
 git clone git@github.com:kien/ctrlp.vim.git
 git clone git@github.com:mileszs/ack.vim.git
