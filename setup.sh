@@ -24,6 +24,7 @@ brew install ack
 cd ~/.vim/bundle
 git clone git@github.com:nvie/vim-togglemouse.git
 git clone git@github.com:vim-scripts/YankRing.vim.git
+git clone git://github.com/tpope/vim-repeat.git
 # File Managment
 git clone git@github.com:kien/ctrlp.vim.git
 git clone git@github.com:mileszs/ack.vim.git
@@ -39,6 +40,7 @@ git clone https://github.com/garbas/vim-snipmate.git
 git clone https://github.com/honza/vim-snippets.git
 git clone git://github.com/nathanaelkane/vim-indent-guides.git
 git clone git@github.com:terryma/vim-multiple-cursors.git
+git clone git://github.com/tpope/vim-abolish.git
 
 git clone git@github.com:Lokaltog/vim-easymotion.git
 git clone https://github.com/scrooloose/nerdcommenter.git
@@ -47,6 +49,11 @@ git clone git@github.com:davidhalter/jedi-vim.git
 cd jedi-vim/
 git submodule update --init
 cd ~/.vim/bundle
+
+# NODE JS https://github.com/joyent/node/wiki/Vim-Plugins
+git clone https://github.com/moll/vim-node.git ~/.vim/bundle/node
+git clone git@github.com:ahayman/vim-nodejs-complete.git
+sudo npm install -g vimdebug
 
 mkdir -p ~/.vim/ftplugin
 curl -o ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
