@@ -19,6 +19,9 @@ curl -o ~/.vim/colors/wombat256mod.vim 'https://raw.githubusercontent.com/newzea
 
 # Install native dependencies
 # TODO: check package manager
+# SUDO
+sudo npm install -g vimdebug
+
 brew install ack
 
 cd ~/.vim/bundle
@@ -50,20 +53,21 @@ cd jedi-vim/
 git submodule update --init
 cd ~/.vim/bundle
 
-# NODE JS https://github.com/joyent/node/wiki/Vim-Plugins
-git clone https://github.com/moll/vim-node.git ~/.vim/bundle/node
-git clone git@github.com:ahayman/vim-nodejs-complete.git
-sudo npm install -g vimdebug
-
 mkdir -p ~/.vim/ftplugin
 curl -o ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
 
+git clone https://github.com/dbakker/vim-lint.git
 git clone https://github.com/scrooloose/syntastic.git
+
+npm install -g js-beautify
 git clone git@github.com:Chiel92/vim-autoformat.git
+git clone git@github.com:Yggdroot/indentLine.git
 git clone git://github.com/godlygeek/tabular.git
 git clone git://github.com/nathanaelkane/vim-indent-guides.git
 git clone git@github.com:nvie/vim-flake8.git
 git clone git@github.com:airblade/vim-gitgutter.git
+vim +Helptags +q
+
 
 git clone git://github.com/tpope/vim-fireplace.git
 git clone git://github.com/tpope/vim-classpath.git
@@ -76,6 +80,10 @@ git clone git://github.com/tpope/vim-surround.git
 git clone git@github.com:rstacruz/sparkup.git
 git clone https://github.com/lilydjwg/colorizer.git
 git clone https://github.com/iandoe/vim-osx-colorpicker.git # dev mode for colour picker -> http://download.panic.com/picker/
+
+# NODE JS https://github.com/joyent/node/wiki/Vim-Plugins
+git clone https://github.com/moll/vim-node.git ~/.vim/bundle/node
+git clone git@github.com:ahayman/vim-nodejs-complete.git
 
 cd ~/.vim/bundle/tern_for_vim; npm install
 npm install -g git://github.com/ramitos/jsctags.git

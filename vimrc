@@ -174,9 +174,9 @@ endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
-set softtabstop=4 " unify
-set shiftwidth=4  " Number of spaces to use for each step of (auto)indent.
-set tabstop=4     " Number of spaces that a <Tab> in the file counts for.
+set softtabstop=2 " unify
+set shiftwidth=2  " Number of spaces to use for each step of (auto)indent.
+set tabstop=2     " Number of spaces that a <Tab> in the file counts for.
 set shiftround    " always indent/outdent to the nearest tabstop
 set smarttab      " use tabs at the start of a line, spaces elsewhere
 set nowrap        " don't wrap text
@@ -254,7 +254,13 @@ set formatoptions=c,q,r,t " This is a sequence of letters which describes how
                     "           after hitting <Enter> in Insert mode. 
                     " t         Auto-wrap text using textwidth (does not apply
                     "           to comments)
- 
+
+noremap <F3> :Autoformat<CR><CR>
+let g:formatprg_less = "css-beautify"
+let g:formatprg_html = "html-beautify"
+let g:formatprg_ejs = "html-beautify"
+let g:formatprg_js = "js-beautify"
+
 set ruler           " Show the line and column number of the cursor position,
                     " separated by a comma.
  
@@ -271,6 +277,7 @@ let g:syntastic_python_checkers = ['jshint']
 
 " paste colour -> :ColorHEX / :ColorRGB
 let g:colorpicker_app = 'iTerm.app'
+au BufNewFile,BufRead *.ejs set filetype=html
 
 " Pathogen
 set runtimepath+=~/Users/shambhala/Development/mighty-dotfiles/vim/autoload
