@@ -28,7 +28,7 @@ cd ~/.vim/bundle
 git clone git@github.com:nvie/vim-togglemouse.git
 git clone git@github.com:vim-scripts/YankRing.vim.git
 git clone git://github.com/tpope/vim-repeat.git
-# File Managment
+# File Management
 git clone git@github.com:kien/ctrlp.vim.git
 git clone git@github.com:mileszs/ack.vim.git
 git clone git@github.com:scrooloose/nerdtree.git
@@ -66,6 +66,7 @@ git clone git://github.com/godlygeek/tabular.git
 git clone git://github.com/nathanaelkane/vim-indent-guides.git
 git clone git@github.com:nvie/vim-flake8.git
 git clone git@github.com:airblade/vim-gitgutter.git
+git clone git://github.com/burnettk/vim-angular.git
 vim +Helptags +q
 
 

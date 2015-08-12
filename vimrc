@@ -22,7 +22,7 @@ set ffs=unix,dos,mac
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 cmap w!! w !sudo tee % >/dev/null
-set autochdir " change into the folder of the file of the buffer
+" set autochdir " change into the folder of the file of the buffer
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -89,10 +89,13 @@ nmap <leader>w :w!<cr>
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
 
 " easier moving between tabs
 map <Leader>h <esc>:tabprevious<CR>
@@ -145,6 +148,7 @@ colorscheme wombat256
 set background=dark
 set guiheadroom=0
 
+au BufNewFile,BufRead *.ejs set filetype=html
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -294,18 +298,22 @@ nnoremap <C-o> :TlistToggle<CR>
 " NERDTree
 nmap <Leader>t :NERDTreeToggle<CR>
 
-
-" Settings for ctrlp
 "let g:ctrlp_working_path_mode = 'ra'
+" Settings for ctrlp
+
+nmap <C-p> :CtrlP<CR>
+
 let g:ctrlp_custom_ignore = '\v[\/]\node_modules$'
+let g:ctrlp_custom_ignore = '\v[\/]\git$'
 let g:ctrlp_custom_ignore = '\v[\/]\bower_components$'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 let g:ctrlp_max_height = 30
 
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+if exists("g:ctrl_user_command")
+  unlet g:ctrlp_user_command
 endif
 
 
@@ -323,6 +331,7 @@ else
 	set wildignore+=.git\*,.hg\*,.svn\*
 endif
 
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
 " Settings for tabularize
 " if exists(":Tabularize")
     nmap <Leader>a= :Tab /=<CR>
