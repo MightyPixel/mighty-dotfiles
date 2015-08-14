@@ -21,10 +21,17 @@ curl -o ~/.vim/colors/wombat256mod.vim 'https://raw.githubusercontent.com/newzea
 # TODO: check package manager
 # SUDO
 sudo npm install -g vimdebug
-
 brew install ack
 
 cd ~/.vim/bundle
+
+# 14 Aug 2015
+# Base
+git clone git://github.com/tpope/vim-sensible.git
+
+
+# Before 14 Aug 2015
+
 git clone git@github.com:nvie/vim-togglemouse.git
 git clone git@github.com:vim-scripts/YankRing.vim.git
 git clone git://github.com/tpope/vim-repeat.git
@@ -73,6 +80,11 @@ vim +Helptags +q
 git clone git://github.com/tpope/vim-fireplace.git
 git clone git://github.com/tpope/vim-classpath.git
 git clone git://github.com/guns/vim-clojure-static.git
+git clone git://github.com/tpope/vim-sexp-mappings-for-regular-people.git
+git clone git://github.com/guns/vim-sexp.git
+git clone git://github.com/tpope/vim-repeat.git
+git clone git://github.com/tpope/vim-surround.git
+
 git clone https://github.com/rizzatti/dash.vim.git
 
 # WEB

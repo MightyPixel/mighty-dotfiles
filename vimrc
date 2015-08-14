@@ -2,6 +2,7 @@
 "
 " Date: 18.04.2013 Created by Ognyan Angelov
 " Date: 08.11.2013 Updated to v 2.0
+" Date: 14.08.2015 Updated to v 3.0
 "
 " Sources 
 " See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
@@ -287,53 +288,38 @@ au BufNewFile,BufRead *.ejs set filetype=html
 set runtimepath+=~/Users/shambhala/Development/mighty-dotfiles/vim/autoload
 execute pathogen#infect()
 
-" TList
-let Tlist_Compact_Format = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Close_On_Select = 1
-nnoremap <C-o> :TlistToggle<CR>
+" TagList
+" let Tlist_Compact_Format = 1
+" let Tlist_GainFocus_On_ToggleOpen = 1
+" let Tlist_Close_On_Select = 1
+" nnoremap <C-o> :TlistToggle<CR>
+"
+" settings for tagbar
+" nmap <F8> :TagbarToggle<CR>
 
 " Easymotion
 " let g:EasyMotion_leader_key = '<Leader>'
 " NERDTree
 nmap <Leader>t :NERDTreeToggle<CR>
 
-"let g:ctrlp_working_path_mode = 'ra'
 " Settings for ctrlp
-
-nmap <C-p> :CtrlP<CR>
-
-let g:ctrlp_custom_ignore = '\v[\/]\node_modules$'
-let g:ctrlp_custom_ignore = '\v[\/]\git$'
-let g:ctrlp_custom_ignore = '\v[\/]\bower_components$'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+nmap <C-o> :CtrlP<CR>
+let g:ctrlp_custom_ignore = 'node_modules|DS_Store|git|bower_components'
+" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux or add a ignore file
 let g:ctrlp_max_height = 30
-
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-
-if exists("g:ctrl_user_command")
-  unlet g:ctrlp_user_command
-endif
-
-
 set wildignore+=*_build/*
 set wildignore+=*/bower_components/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/.git/*
 set wildignore+=*/coverage/*
-
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore=*.o,*~,*.pyc
-if has("win16") || has("win32")
-	set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-else
-	set wildignore+=.git\*,.hg\*,.svn\*
-endif
-
+set wildignore+=.git\*,.hg\*,.svn\*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
+
 " Settings for tabularize
-" if exists(":Tabularize")
+if exists(":Tabularize")
     nmap <Leader>a= :Tab /=<CR>
     vmap <Leader>a= :Tab /=<CR>
     nmap <Leader>a/ :Tab /\/\/<CR>
@@ -342,10 +328,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
     vmap <Leader>a: :Tab /:\zs<CR>
     nmap <Leader>a" :Tab /"<CR>
     vmap <Leader>a" :Tab /"<CR>
-" endif
-
-" settings for tagbar
-nmap <F8> :TagbarToggle<CR>
+endif
 
 " settings for davidhalter/jedi-vim
 let g:jedi#usages_command = "<leader>z"
@@ -356,7 +339,6 @@ let g:nodejs_complete_config = {
 \  'js_compl_fn': 'jscomplete#CompleteJS',
 \  'max_node_compl_len': 15
 \}
-
 
 " settings for omnicomplete
 " Better navigating through omnicomplete option list
@@ -378,3 +360,7 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 " LANGUAGE SPECIFIC:
 " Python:
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+" 14 Aug 2015
+" Load sensible after vimrc - overloading
+runtime! plugin/sensible.vim
