@@ -22,13 +22,27 @@ curl -o ~/.vim/colors/wombat256mod.vim 'https://raw.githubusercontent.com/newzea
 # SUDO
 sudo npm install -g vimdebug
 brew install ack
+brew install ctags-exuberant
 
 cd ~/.vim/bundle
 
 # 14 Aug 2015
 # Base
+# baseline config
 git clone git://github.com/tpope/vim-sensible.git
+# Comments
+git clone git://github.com/tpope/vim-commentary.git
+# ctrl a and stuff ?
+git clone git://github.com/tpope/vim-rsi.git
 
+# Add conterpart if endif etc
+git clone git://github.com/tpope/vim-endwise
+
+# Should detect tabs/spaces?
+git clone git://github.com/tpope/vim-sleuth.git
+
+# easy tags
+git clone https://github.com/xolox/vim-easytags.git
 
 # Before 14 Aug 2015
 
@@ -41,19 +55,18 @@ git clone git@github.com:mileszs/ack.vim.git
 git clone git@github.com:scrooloose/nerdtree.git
 
 git clone git@github.com:Lokaltog/powerline.git
-git clone https://github.com/bling/vim-airline
+git clone git://github.com/bling/vim-airline
 git clone git@github.com:tomtom/tlib_vim.git
-git clone https://github.com/MarcWeber/vim-addon-mw-utils.git
+git clone git://github.com/MarcWeber/vim-addon-mw-utils.git
 git clone git@github.com:tpope/vim-fugitive.git
 
-git clone https://github.com/garbas/vim-snipmate.git
-git clone https://github.com/honza/vim-snippets.git
+git clone git://github.com/garbas/vim-snipmate.git
+git clone git://github.com/honza/vim-snippets.git
 git clone git://github.com/nathanaelkane/vim-indent-guides.git
 git clone git@github.com:terryma/vim-multiple-cursors.git
 git clone git://github.com/tpope/vim-abolish.git
 
 git clone git@github.com:Lokaltog/vim-easymotion.git
-git clone https://github.com/scrooloose/nerdcommenter.git
 
 git clone git@github.com:davidhalter/jedi-vim.git
 cd jedi-vim/
@@ -63,8 +76,8 @@ cd ~/.vim/bundle
 mkdir -p ~/.vim/ftplugin
 curl -o ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
 
-git clone https://github.com/dbakker/vim-lint.git
-git clone https://github.com/scrooloose/syntastic.git
+git clone git://github.com/dbakker/vim-lint.git
+git clone git://github.com/scrooloose/syntastic.git
 
 npm install -g js-beautify
 git clone git@github.com:Chiel92/vim-autoformat.git
@@ -85,17 +98,17 @@ git clone git://github.com/guns/vim-sexp.git
 git clone git://github.com/tpope/vim-repeat.git
 git clone git://github.com/tpope/vim-surround.git
 
-git clone https://github.com/rizzatti/dash.vim.git
+git clone git://github.com/rizzatti/dash.vim.git
 
 # WEB
 git clone git@github.com:marijnh/tern_for_vim.git
 git clone git://github.com/tpope/vim-surround.git
 git clone git@github.com:rstacruz/sparkup.git
-git clone https://github.com/lilydjwg/colorizer.git
-git clone https://github.com/iandoe/vim-osx-colorpicker.git # dev mode for colour picker -> http://download.panic.com/picker/
+git clone git://github.com/lilydjwg/colorizer.git
+git clone git://github.com/iandoe/vim-osx-colorpicker.git # dev mode for colour picker -> http://download.panic.com/picker/
 
-# NODE JS https://github.com/joyent/node/wiki/Vim-Plugins
-git clone https://github.com/moll/vim-node.git ~/.vim/bundle/node
+# NODE JS git://github.com/joyent/node/wiki/Vim-Plugins
+git clone git://github.com/moll/vim-node.git ~/.vim/bundle/node
 git clone git@github.com:ahayman/vim-nodejs-complete.git
 
 cd ~/.vim/bundle/tern_for_vim; npm install

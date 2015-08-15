@@ -8,6 +8,18 @@
 " See: http://vimdoc.sourceforge.net/htmldoc/options.html for details
 " https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
 " https://github.com/amix/vimrc/blob/master/vimrcs/extended.vim
+" http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+"
+" To do
+" https://robots.thoughtbot.com/writing-clojure-in-vim
+" https://www.shortcutfoo.com/app/dojos/vim/cheatsheet
+" http://vim.rtorr.com/
+" http://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
+"
+" help
+" :viusage
+" :exusage
+" :h quickref
 
 set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
 
@@ -41,6 +53,9 @@ autocmd filetype python set expandtab
 
 syntax on                 " Vim  overrule your settings with the defaults
 syntax enable             " enable syntax highlighting (previously syntax on).
+setlocal spell spelllang=en_us
+set complete+=kspell
+
 
 
 " USEFUL SETTINGS:
@@ -84,7 +99,7 @@ set clipboard=unnamed
 
 " Rebind <Leader> key
 let mapleader = ";"
-map <Leader>r <esc>:so $MYVIMRC<CR>
+map <Leader>R <esc>:so $MYVIMRC<CR>
 nmap <leader>w :w!<cr>
 " command W w !sudo tee % > /dev/null " :W sudo saves the file 
 
@@ -97,6 +112,7 @@ nnoremap <C-H> <C-W><C-H>
 
 set splitbelow
 set splitright
+nnoremap <Leader>vr :vertical resize 
 
 " easier moving between tabs
 map <Leader>h <esc>:tabprevious<CR>
@@ -106,7 +122,29 @@ map <C-T> <esc>:tabnew<CR>
 vnoremap <Leader>s :sort<CR> " map sort function to a key
 
 " Search
-map <F4> :Ack <cword>        " Search
+" map <F4> :Ack <cword>        " Search
+nnoremap <leader>a :90vsplit<CR>:Ack ""<Left>
+let g:ack_autofold_results = 1
+" let g:ackpreview = 1
+nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
+nmap <leader>ra :Qargs <BAR> argdo %s/a/b/gc <BAR> update
+
+command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
+function! QuickfixFilenames()
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(values(buffer_numbers))
+endfunction
+
+" Finds and replaces in files based on the the current line.
+map <Leader>fr ^l"ayt/^v$h"byu:vsp<CR>:args `ack -l <C-R>a`<CR>:argdo " %s<C-R>bge \| update<CR>
+
+" Same as above but asks before all the changes.
+map <Leader>far ^l"ayt/^v$h"byu:vsp<CR>:args `ack -l <C-R>a`<CR>:argdo %s<C-R>bgce \| update<CR>
+
 " Bind nohl
 " Removes highlight of your last search
 noremap <Leader>n :nohl<CR>  " Clear hightlight
@@ -134,6 +172,10 @@ set listchars=tab:\|-,trail:_,extends:#,nbsp:_
 
 
 set laststatus=2           "  last window always has a statusline
+let g:airline_theme='powerlineish'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_section_z=''
 if has("gui_running")
     set guioptions-=T
     set guioptions-=e
@@ -297,8 +339,11 @@ execute pathogen#infect()
 " settings for tagbar
 " nmap <F8> :TagbarToggle<CR>
 
+" ctags
+nnoremap <leader>ct :CtrlPTag<cr>
+
 " Easymotion
-" let g:EasyMotion_leader_key = '<Leader>'
+let g:EasyMotion_leader_key = '<Leader>'
 " NERDTree
 nmap <Leader>t :NERDTreeToggle<CR>
 
@@ -308,13 +353,13 @@ let g:ctrlp_custom_ignore = 'node_modules|DS_Store|git|bower_components'
 " let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux or add a ignore file
 let g:ctrlp_max_height = 30
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+set wildignore=*.o,*~,*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/bower_components/*
 set wildignore+=*/node_modules/*
 set wildignore+=*/.git/*
 set wildignore+=*/coverage/*
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore=*.o,*~,*.pyc
 set wildignore+=.git\*,.hg\*,.svn\*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
 
@@ -343,6 +388,7 @@ let g:nodejs_complete_config = {
 " settings for omnicomplete
 " Better navigating through omnicomplete option list
 set completeopt=longest,menuone
+set omnifunc=syntaxcomplete#Complete
 function! OmniPopup(action)
     if pumvisible()
         if a:action == 'j'
@@ -357,10 +403,12 @@ endfunction
 inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
 inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
+inoremap <C-space> <C-P>
+
 " LANGUAGE SPECIFIC:
 " Python:
 map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " 14 Aug 2015
 " Load sensible after vimrc - overloading
-runtime! plugin/sensible.vim
+" runtime! plugin/sensible.vim

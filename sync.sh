@@ -10,8 +10,7 @@ dir=`pwd -P`
 popd > /dev/null
 olddir=~/dotfiles_old                           # old dotfiles backup directory
 
-files="zshrc
-        vimrc"                                  # list of files/folders to symlink in homedir
+files="zshrc vimrc ctags"                                  # list of files/folders to symlink in homedir
 ##########
 
 # create dotfiles_old in homedir
