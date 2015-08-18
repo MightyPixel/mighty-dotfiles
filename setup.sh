@@ -42,7 +42,19 @@ git clone git://github.com/tpope/vim-endwise
 git clone git://github.com/tpope/vim-sleuth.git
 
 # easy tags
+git clone https://github.com/xolox/vim-misc.git
+# auto-create ctags
 git clone https://github.com/xolox/vim-easytags.git
+
+# join lines
+https://github.com/AndrewRadev/splitjoin.vim.git
+
+# Ruby + Rails env
+#
+git clone git://github.com/tpope/vim-rails.git
+git clone git://github.com/tpope/vim-bundler.git
+
+git clone git://github.com/skalnik/vim-vroom.git
 
 # Before 14 Aug 2015
 
