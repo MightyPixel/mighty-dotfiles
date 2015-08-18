@@ -35,6 +35,7 @@ for file in $files; do
 done
 
 mkdir -p ~/.config/fish
+rm -rf ~/.oh-my-fish
 curl -L https://github.com/oh-my-fish/oh-my-fish/raw/master/tools/install.fish | fish
 rm ~/.config/fish/config.fish
 ln -s $dir/config.fish ~/.config/fish/config.fish
