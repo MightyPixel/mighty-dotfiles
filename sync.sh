@@ -40,5 +40,5 @@ curl -L https://github.com/oh-my-fish/oh-my-fish/raw/master/tools/install.fish |
 rm ~/.config/fish/config.fish
 ln -s $dir/config.fish ~/.config/fish/config.fish
 
-source ~/.config/fish/config.fish
+fish ~/.config/fish/config.fish
 omf install

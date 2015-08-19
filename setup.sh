@@ -4,7 +4,7 @@ pushd `dirname $0` > /dev/null                  # dotfiles directory
 dir=`pwd -P`
 popd > /dev/null
 
-source $dir/sync.sh
+bash $dir/sync.sh
 
 mkdir -p ~/.vim/autoload ~/.vim/bundle; \
    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
@@ -40,6 +40,7 @@ git clone git://github.com/tpope/vim-endwise
 
 # Should detect tabs/spaces?
 git clone git://github.com/tpope/vim-sleuth.git
+git clone https://github.com/tpope/vim-repeat.git
 
 # easy tags
 git clone https://github.com/xolox/vim-misc.git
@@ -55,6 +56,9 @@ git clone git://github.com/tpope/vim-rails.git
 git clone git://github.com/tpope/vim-bundler.git
 
 git clone git://github.com/skalnik/vim-vroom.git
+
+# JS
+https://github.com/mklabs/vim-backbone
 
 # Before 14 Aug 2015
 
