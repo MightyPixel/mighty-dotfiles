@@ -31,6 +31,12 @@ set encoding=utf8
 "
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
+" Disable .swp files
+" set noswapfile
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %

@@ -34,6 +34,10 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
+mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/swap
+mkdir -p ~/.vim/undo
+
 mkdir -p ~/.config/fish
 rm -rf ~/.oh-my-fish
 curl -L https://github.com/oh-my-fish/oh-my-fish/raw/master/tools/install.fish | fish
