@@ -11,3 +11,15 @@ set -g OMF_CONFIG $HOME/.config/omf
 
 # Load oh-my-fish configuration.
 source $OMF_PATH/init.fish
+
+function clean-vim
+  echo "Cleaning ~/.vimbackup/"
+  rm -Rf ~/.vimbackup/*
+  echo "Cleaning ~/.vimswap/"
+  rm -Rf ~/.vimswap/*
+  echo "Cleaning ~/.vimviews/"
+  rm -Rf ~/.vimviews/*
+  echo "Cleaning ~/.vimundo/"
+  rm -Rf ~/.vimundo/*
+  echo "All done!"
+end

@@ -22,9 +22,12 @@ curl -o ~/.vim/colors/wombat256mod.vim 'https://raw.githubusercontent.com/newzea
 # SUDO
 sudo npm install -g vimdebug
 brew install ack
+brew install the_silver_searcher
 brew install ctags-exuberant
 
 cd ~/.vim/bundle
+
+git clone git@github.com:wesQ3/vim-windowswap.git
 
 # 14 Aug 2015
 # Base
@@ -41,6 +44,8 @@ git clone git://github.com/tpope/vim-endwise
 # Should detect tabs/spaces?
 git clone git://github.com/tpope/vim-sleuth.git
 git clone https://github.com/tpope/vim-repeat.git
+
+git clone https://github.com/vim-scripts/marvim.git
 
 # easy tags
 git clone https://github.com/xolox/vim-misc.git
@@ -68,6 +73,7 @@ git clone git://github.com/tpope/vim-repeat.git
 # File Management
 git clone git@github.com:kien/ctrlp.vim.git
 git clone git@github.com:mileszs/ack.vim.git
+git clone git@github.com:rking/ag.vim.git
 git clone git@github.com:scrooloose/nerdtree.git
 
 git clone git@github.com:Lokaltog/powerline.git

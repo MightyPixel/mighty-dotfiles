@@ -9,6 +9,7 @@
 " https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
 " https://github.com/amix/vimrc/blob/master/vimrcs/extended.vim
 " http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+" http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/
 "
 " To do
 " https://robots.thoughtbot.com/writing-clojure-in-vim
@@ -118,7 +119,12 @@ nnoremap <C-H> <C-W><C-H>
 
 set splitbelow
 set splitright
-nnoremap <Leader>vr :vertical resize 
+nnoremap <Leader>vr :vertical resize
+
+let g:windowswap_map_keys = 0 "prevent default bindings
+nnoremap <silent> <leader>yw :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap <silent> <leader>pw :call WindowSwap#DoWindowSwap()<CR>
+nnoremap <silent> <leader>mw :call WindowSwap#EasyWindowSwap()<CR>
 
 " easier moving between tabs
 map <Leader>h <esc>:tabprevious<CR>
@@ -130,7 +136,7 @@ vnoremap <Leader>s :sort<CR> " map sort function to a key
 " Search
 " map <F4> :Ack <cword>        " Search
 nnoremap <leader>a :90vsplit<CR>:Ack ""<Left>
-let g:ack_autofold_results = 1
+" let g:ack_autofold_results = 1
 " let g:ackpreview = 1
 nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
 nmap <leader>ra :Qargs <BAR> argdo %s/a/b/gc <BAR> update
@@ -203,7 +209,7 @@ au BufNewFile,BufRead *.ejs set filetype=html
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
-map 0 ^
+" map 0 ^
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -352,6 +358,9 @@ nnoremap <leader>ct :CtrlPTag<cr>
 let g:EasyMotion_leader_key = '<Leader>'
 " NERDTree
 nmap <Leader>t :NERDTreeToggle<CR>
+map <leader>r :NERDTreeFind<CR>
+nmap <C-CR> :NERDTreeMapOpenInTab<CR>
+let NERDTreeIgnore = ['\.map$']
 
 " Settings for ctrlp
 nmap <C-o> :CtrlP<CR>
