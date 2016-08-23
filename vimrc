@@ -60,8 +60,10 @@ autocmd filetype python set expandtab
 
 syntax on                 " Vim  overrule your settings with the defaults
 syntax enable             " enable syntax highlighting (previously syntax on).
-setlocal spell spelllang=en_us
-set complete+=kspell
+" setlocal spell spelllang=en_us
+" set complete+=kspell
+hi clear SpellBad
+hi SpellBad cterm=underline ctermfg=red
 
 
 
@@ -130,6 +132,17 @@ nnoremap <silent> <leader>mw :call WindowSwap#EasyWindowSwap()<CR>
 map <Leader>h <esc>:tabprevious<CR>
 map <Leader>l <esc>:tabnext<CR>
 map <C-T> <esc>:tabnew<CR>
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
 vnoremap <Leader>s :sort<CR> " map sort function to a key
 
@@ -138,8 +151,32 @@ vnoremap <Leader>s :sort<CR> " map sort function to a key
 nnoremap <leader>a :90vsplit<CR>:Ack ""<Left>
 " let g:ack_autofold_results = 1
 " let g:ackpreview = 1
+nmap <leader><leader>f :tab split<CR>:grep -F '<C-r><C-w>' ./**/*.ts<CR>
 nmap <leader>A :tab split<CR>:Ack <C-r><C-w><CR>
 nmap <leader>ra :Qargs <BAR> argdo %s/a/b/gc <BAR> update
+
+noremap <S-Up> :cp<cr>
+noremap <S-Down> :cn<cr>
+
+nnoremap <leader>g :set operatorfunc=GrepOperator<cr>g@
+vnoremap <leader>g :<c-u>call GrepOperator(visualmode())<cr>
+
+function! GrepOperator(type)
+    let saved_unnamed_register = @@
+
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+
+    silent execute "vimgrep! '" . shellescape(@@) . "' ."
+    copen
+
+    let @@ = saved_unnamed_register
+endfunction
 
 command! -nargs=0 -bar Qargs execute 'args ' . QuickfixFilenames()
 function! QuickfixFilenames()
@@ -200,8 +237,11 @@ endif
 " colorscheme desert
 " colorscheme ron 
 colorscheme wombat256
-set background=dark
-set guiheadroom=0
+"
+" colorscheme blazer
+" colorscheme pencil
+" set background=dark
+" set guiheadroom=0
 
 au BufNewFile,BufRead *.ejs set filetype=html
 
@@ -212,10 +252,10 @@ au BufNewFile,BufRead *.ejs set filetype=html
 " map 0 ^
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap <C-j> mz:m+<cr>`z
+nmap <C-k> mz:m-2<cr>`z
+vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
@@ -255,6 +295,10 @@ endfunction
 
 fu! UseTabs()
     set noexpandtab
+endfunction
+
+fu! JsonFormat()
+  %!python -m json.tool
 endfunction
 
 
@@ -315,6 +359,9 @@ set formatoptions=c,q,r,t " This is a sequence of letters which describes how
                     "           to comments)
 
 noremap <F3> :Autoformat<CR><CR>
+" :%!python -m json.tool
+set conceallevel=0
+
 let g:formatprg_less = "css-beautify"
 let g:formatprg_html = "html-beautify"
 let g:formatprg_ejs = "html-beautify"
@@ -323,7 +370,8 @@ let g:formatprg_js = "js-beautify"
 set ruler           " Show the line and column number of the cursor position,
                     " separated by a comma.
  
-set background=dark " When set to "dark", Vim will try to use colors that look
+" set background=dark
+" When set to "dark", Vim will try to use colors that look
                     " good on a dark background. When set to "light", Vim will
                     " try to use colors that look good on a light background.
                     " Any other value is illegal.
@@ -356,6 +404,21 @@ nnoremap <leader>ct :CtrlPTag<cr>
 
 " Easymotion
 let g:EasyMotion_leader_key = '<Leader>'
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
 " NERDTree
 nmap <Leader>t :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<CR>
@@ -377,6 +440,7 @@ set wildignore+=*/coverage/*
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=.git\*,.hg\*,.svn\*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
+set wildignore+=*/client-build/*
 
 " Settings for tabularize
 if exists(":Tabularize")
@@ -427,8 +491,29 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 inoremap <expr> <C-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
             \ '<C-x><C-o><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
 " open user completion menu closing previous if open and opening new menu without changing the text
-inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
-            \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
+" inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
+"            \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
+
+" inoremap <C-Space> <C-x><C-o>
+" inoremap <C-@> <C-Space>
+
+function! Auto_complete_string()
+    if pumvisible()
+        return "\<C-n>"
+    else
+        return "\<C-x>\<C-o>\<C-r>=Auto_complete_opened()\<CR>"
+    end
+endfunction
+
+function! Auto_complete_opened()
+    if pumvisible()
+        return "\<Down>"
+    end
+    return ""
+endfunction
+
+" inoremap <expr> <Nul> Auto_complete_string()
+" inoremap <expr> <C-Space> Auto_complete_string()
 
 " inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
 " inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
@@ -442,3 +527,13 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 " 14 Aug 2015
 " Load sensible after vimrc - overloading
 " runtime! plugin/sensible.vim
+"
+" colorscheme default
+"
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --group\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif

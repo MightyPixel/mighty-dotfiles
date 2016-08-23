@@ -16,6 +16,7 @@ mkdir -p ~/.vim/colors/tmp; \
 
 curl -o ~/.vim/colors/wombat256.vim 'http://www.vim.org/scripts/download_script.php?src_id=13400'
 curl -o ~/.vim/colors/wombat256mod.vim 'https://raw.githubusercontent.com/newzealandpaul/wombat256mod/master/colors/wombat256mod.vim'
+curl -o ~/.vim/colors/pencil.vim https://raw.githubusercontent.com/reedes/vim-colors-pencil/master/colors/pencil.vim
 
 # Install native dependencies
 # TODO: check package manager
