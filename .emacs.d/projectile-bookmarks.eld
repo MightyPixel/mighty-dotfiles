@@ -1,0 +1,1 @@
+("~/Repository/mighty-dotfiles/" "~/.emacs.d/" "~/Repository/game_engines/UnrealEngine/" "~/Repository/Simple-Chess-Engine/" "~/Repository/chobo-game/chobo-backyard/")

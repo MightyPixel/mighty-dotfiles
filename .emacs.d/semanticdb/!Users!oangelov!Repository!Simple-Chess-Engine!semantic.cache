@@ -1,0 +1,24 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("iostream" include (:system-flag t) nil [1 19])
+            ("core/Player.hh" include nil nil [21 46])
+            ("core/ChessGame.hh" include nil nil [47 75])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [77 97])
+            ("main" function (:type "int") nil [99 540]))          
+      :file "main.cc"
+      :pointmax 541
+      :fsize 540
+      :lastmodtime '(22708 36257 0 0)
+      :unmatched-syntax nil))
+  :file "!Users!oangelov!Repository!Simple-Chess-Engine!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

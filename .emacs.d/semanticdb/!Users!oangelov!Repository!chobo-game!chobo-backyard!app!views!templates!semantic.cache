@@ -1,0 +1,24 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode html-mode
+      :tags nil
+      :file "object-to-form.html"
+      :pointmax 2352
+      :fsize 2351
+      :lastmodtime '(22708 17173 0 0)
+      :unmatched-syntax nil)
+    (semanticdb-table "semanticdb-table"
+      :major-mode html-mode
+      :tags nil
+      :file "list.html"
+      :pointmax 828
+      :fsize 827
+      :lastmodtime '(22606 41812 0 0)
+      :unmatched-syntax nil))
+  :file "!Users!oangelov!Repository!chobo-game!chobo-backyard!app!views!templates!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

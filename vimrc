@@ -24,6 +24,8 @@
 
 set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
 
+set path=**
+
 " FILES:
 " For multi-byte character support (CJK support, for example):
 " set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
@@ -143,6 +145,7 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
+noremap <leader>' viwc''<esc>P
 
 vnoremap <Leader>s :sort<CR> " map sort function to a key
 
@@ -217,8 +220,9 @@ set wildmenu
 "" set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:< " show whitespace
 " set list 
 set list
-set listchars=tab:\|-,trail:_,extends:#,nbsp:_
-
+" set listchars=tab:\|---,trail:_,extends:#,nbsp:_
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+" set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 
 set laststatus=2           "  last window always has a statusline
 let g:airline_theme='powerlineish'
@@ -379,6 +383,9 @@ set ruler           " Show the line and column number of the cursor position,
 set mouse=a         " Enable the use of the mouse.
 
 " PLUGINS:
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
+
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_checkers = ['jshint']
 
@@ -441,6 +448,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=.git\*,.hg\*,.svn\*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor
 set wildignore+=*/client-build/*
+set wildignore+=*/bin/*
 
 " Settings for tabularize
 if exists(":Tabularize")
@@ -537,3 +545,9 @@ if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
+" autocmd filetype c nnoremap <F4> :w :normal Gi int main() {^V<esc> gg i } ^V<esc> <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
+" autocmd filetype c nnoremap <F4> :normal ggOint main() {<esc> Go}<esc>:w ~/test.txt<cr>
+nnoremap <leader>o :tabnew<cr>:o test.c<cr>:QuickRun<cr>
+nnoremap <F5> :QuickRun<cr>
+

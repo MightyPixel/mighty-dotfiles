@@ -1,0 +1,136 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode c++-mode
+      :tags 
+        '( ("CoreMinimal.h" include nil nil [64 88])
+            ("Misc/App.h" include nil nil [89 110])
+            ("Misc/OutputDeviceError.h" include nil nil [111 146])
+            ("LaunchEngineLoop.h" include nil nil [147 176])
+            ("ExceptionHandling.h" include nil nil [177 207])
+            ("PlatformMallocCrash.h" include nil nil [208 240])
+            ("WindowsHWrapper.h" include nil nil [241 269])
+            ("DEFINE_LOG_CATEGORY_STATIC" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("" variable (:type ("LogLaunchWindows" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [345 362])
+                    ("" variable (:type ("Log" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [363 367])
+                    ("" variable (:type ("All" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [368 372]))                  
+                :type "int")
+                nil [318 373])
+            ("GuardedMain" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :arguments 
+                  ( ("CmdLine" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("TCHAR" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [401 422])
+                    ("hInInstance" variable (:type ("HINSTANCE" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [423 445])
+                    ("hPrevInstance" variable (:type ("HINSTANCE" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [446 470])
+                    ("nCmdShow" variable (:type ("int32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [471 487]))                  
+                :type ("int32" type (:type "class") nil nil))
+                nil [375 488])
+            ("LaunchStaticShutdownAfterError" function
+               (:prototype-flag t
+                :typemodifiers ("extern")
+                :type "void")
+                nil [489 534])
+            ("NvOptimusEnablement" variable
+               (:typemodifiers ("extern" "\"C\"")
+                :type ("uint32" type (:type "class") nil nil)
+                :default-value "0x00000001")
+                (reparse-symbol extern-c-contents) [820 860])
+            ("AmdPowerXpressRequestHighPerformance" variable
+               (:typemodifiers ("extern" "\"C\"")
+                :type ("uint32" type (:type "class") nil nil)
+                :default-value "0x00000001")
+                (reparse-symbol extern-c-contents) [980 1037])
+            ("GNamedMutex" variable
+               (:default-value "NULL"
+                :type ("HANDLE" type (:type "class") nil nil))
+                nil [1132 1158])
+            ("GShouldPauseBeforeExit" variable (:type "bool") nil [1219 1248])
+            ("ReleaseNamedMutex" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [1274 1280]))                  
+                :type "void")
+                nil [1250 1362])
+            ("MakeNamedMutex" function
+               (:arguments 
+                  ( ("CmdLine" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("TCHAR" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [1385 1407]))                  
+                :type "bool")
+                nil [1364 2019])
+            ("InvalidParameterHandler" function
+               (:arguments 
+                  ( ("Expression" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("TCHAR" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2354 2378])
+                    ("Function" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("TCHAR" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2387 2409])
+                    ("File" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("TCHAR" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2419 2437])
+                    ("Line" variable (:type ("uint32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2447 2459])
+                    ("Reserved" variable (:type ("uintptr_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [2469 2488]))                  
+                :type "void")
+                nil [2325 2756])
+            ("SetupWindowsEnvironment" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [2832 2838]))                  
+                :type "void")
+                nil [2802 3258])
+            ("GEnableInnerException" variable
+               (:default-value "false"
+                :type "bool")
+                nil [3558 3593])
+            ("GuardedMainWrapper" function
+               (:arguments 
+                  ( ("CmdLine" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type ("TCHAR" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [3873 3894])
+                    ("hInInstance" variable (:type ("HINSTANCE" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3895 3917])
+                    ("hPrevInstance" variable (:type ("HINSTANCE" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3918 3942])
+                    ("nCmdShow" variable (:type ("int32" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [3943 3959]))                  
+                :type ("int32" type (:type "class") nil nil))
+                nil [3847 4549])
+            ("WinMain" function
+               (:arguments 
+                  ( ("HINSTANCE" variable (:type ("_In_" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4572 4598])
+                    ("" variable (:type ("hInInstance" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4587 4599])
+                    ("HINSTANCE" variable (:type ("_In_opt_" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4600 4632])
+                    ("" variable (:type ("hPrevInstance" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4619 4633])
+                    ("" variable (:type ("_In_" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4634 4643])
+                    ("" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [4639 4645])
+                    ("int32" variable (:type ("_In_" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4646 4665])
+                    ("" variable (:type ("nCmdShow" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4657 4667]))                  
+                :type ("WINAPI" type (:type "class") nil nil))
+                nil [4556 7569]))          
+      :file "LaunchWindows.cpp"
+      :pointmax 7571
+      :fsize 7569
+      :lastmodtime '(22717 33663 0 0)
+      :unmatched-syntax nil))
+  :file "!Users!oangelov!Repository!game_engines!UnrealEngine!Engine!Source!Runtime!Launch!Private!Windows!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")
