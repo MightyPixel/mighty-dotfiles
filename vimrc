@@ -236,15 +236,17 @@ if has("gui_running")
     set t_Co=256           "  enable 256-color mode.
 endif
 
+set background=dark
 
 " colorscheme jellybeans
 " colorscheme desert
 " colorscheme ron 
-colorscheme wombat256
+" colorscheme wombat256
+colorscheme material-theme
+
 "
 " colorscheme blazer
 " colorscheme pencil
-" set background=dark
 " set guiheadroom=0
 
 au BufNewFile,BufRead *.ejs set filetype=html
@@ -295,6 +297,17 @@ fu! UseSpaces()
                         " Spaces are used in indents with the '>' and '<' commands
                         " and when 'autoindent' is on. To insert a real tab when
                         " 'expandtab' is on, use CTRL-V <Tab>.
+    set shiftwidth=4
+    set softtabstop=4
+endfunction
+
+fu! UseSpaces2()
+    set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
+                        " Spaces are used in indents with the '>' and '<' commands
+                        " and when 'autoindent' is on. To insert a real tab when
+                        " 'expandtab' is on, use CTRL-V <Tab>.
+    set shiftwidth=2
+    set softtabstop=2
 endfunction
 
 fu! UseTabs()

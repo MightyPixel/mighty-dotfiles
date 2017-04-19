@@ -1,1 +1,1 @@
-("~/Repository/mighty-dotfiles/" "~/.emacs.d/" "~/Repository/game_engines/UnrealEngine/" "~/Repository/Simple-Chess-Engine/" "~/Repository/chobo-game/chobo-backyard/")
+("~/Repository/mighty-dotfiles/" "~/Repository/Simple-Chess-Engine/" "~/Repository/chobo-game/roborangers/" "~/Repository/chobo-game/chobo-backyard/" "~/Repository/adv_cpp/resource_managment/" "~/.emacs.d/" "~/Repository/game_engines/UnrealEngine/")
