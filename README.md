@@ -2,3 +2,5 @@ mighty-dotfiles
 ===============
 
 My dotfiles
+
+:)
