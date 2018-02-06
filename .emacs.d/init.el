@@ -16,7 +16,7 @@
 ;; lower value in your dotfile (function `dotspacemacs/user-config')
 (setq gc-cons-threshold 100000000)
 
-(defconst spacemacs-version         "0.200.10" "Spacemacs version.")
+(defconst spacemacs-version         "0.200.13" "Spacemacs version.")
 (defconst spacemacs-emacs-min-version   "24.4" "Minimal version of Emacs.")
 
 (if (not (version<= spacemacs-emacs-min-version emacs-version))
@@ -32,5 +32,3 @@
   (spacemacs/setup-startup-hook)
   (require 'server)
   (unless (server-running-p) (server-start)))
-
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
