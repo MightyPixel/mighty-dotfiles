@@ -320,31 +320,53 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (progn
-    (cond
-     ((string-equal system-type "windows-nt")
-      (setq-default
-       ispell-program-name "C:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"
-       )))
-    ;; (setq-default python-shell-completion-native-disabled-interpreters '("ipython"))
-    (setq-default js2-basic-offset 2
-                  css-indent-offset 2
-                  web-mode-markup-indent-offset 2
-                  web-mode-css-indent-offset 2
-                  web-mode-code-indent-offset 2
-                  web-mode-attr-indent-offset 2
-                  )
-    (with-eval-after-load 'web-mode
-      (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-      (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-      (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
-    (defun close-and-kill-this-pane ()
-      "If there are multiple windows, then close this pane and kill the buffer in it also."
-      (interactive)
-      (kill-this-buffer)
-      (if (not (one-window-p))
-          (delete-window)))
-    ))
+  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+  (defun evil-paste-after-from-0 ()
+    (interactive)
+    (let ((evil-this-register ?0))
+      (call-interactively 'evil-paste-after)))
+
+  (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
+
+  (defun evil-keyboard-quit ()
+    "Keyboard quit and force normal state."
+    (interactive)
+    (and evil-mode (evil-force-normal-state))
+    (keyboard-quit))
+
+
+  (define-key evil-normal-state-map   (kbd "C-g") #'evil-keyboard-quit)
+  (define-key evil-motion-state-map   (kbd "C-g") #'evil-keyboard-quit)
+  (define-key evil-insert-state-map   (kbd "C-g") #'evil-keyboard-quit)
+  (define-key evil-window-map         (kbd "C-g") #'evil-keyboard-quit)
+  (define-key evil-operator-state-map (kbd "C-g") #'evil-keyboard-quit)
+
+  (setq evil-move-cursor-back nil)
+
+  (cond
+    ((string-equal system-type "windows-nt")
+    (setq-default
+      ispell-program-name "C:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"
+      )))
+  ;; (setq-default python-shell-completion-native-disabled-interpreters '("ipython"))
+  (setq-default js2-basic-offset 2
+                css-indent-offset 2
+                web-mode-markup-indent-offset 2
+                web-mode-css-indent-offset 2
+                web-mode-code-indent-offset 2
+                web-mode-attr-indent-offset 2
+                )
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+  (defun close-and-kill-this-pane ()
+    "If there are multiple windows, then close this pane and kill the buffer in it also."
+    (interactive)
+    (kill-this-buffer)
+    (if (not (one-window-p))
+        (delete-window)))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
