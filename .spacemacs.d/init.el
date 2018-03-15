@@ -41,6 +41,7 @@ values."
                       auto-completion-enable-help-tooltip t)
      emacs-lisp
      git
+     command-log
 
      spell-checking
      syntax-checking
@@ -55,6 +56,9 @@ values."
      python
      html
      ipython-notebook
+
+     (scala :variables
+            scala-auto-start-ensime t)
      ;; markdown
      ;; org
      (shell :variables
@@ -311,6 +315,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
+  (push '("ensime" . "melpa-stable") package-pinned-packages)
   )
 
 (defun dotspacemacs/user-config ()
@@ -366,6 +372,7 @@ you should place your code here."
     (kill-this-buffer)
     (if (not (one-window-p))
         (delete-window)))
+  (load-file "~/.spacemacs.d/functions/eval-scala.el")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -377,9 +384,12 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(evil-move-cursor-back t)
  '(evil-want-Y-yank-to-eol nil)
+ '(exec-path
+   (quote
+    ("c:/Program Files/Microsoft MPI/Bin/" "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v8.0/bin" "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v8.0/libnvvp" "C:/ProgramData/Oracle/Java/javapath" "C:/WINDOWS/system32" "C:/WINDOWS" "C:/WINDOWS/System32/Wbem" "C:/WINDOWS/System32/WindowsPowerShell/v1.0/" "C:/Program Files/Python36" "C:/Program Files/Python36/Scripts" "C:/Users/Ognyan Angelov/.dnx/bin" "C:/Program Files/Microsoft DNX/Dnvm/" "C:/Program Files/Microsoft SQL Server/130/Tools/Binn/" "C:/Program Files/Git/cmd" "C:/Program Files (x86)/Skype/Phone/" "C:/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/" "C:/PostgreSQL/pg96/bin" "C:/Program Files/Anaconda3" "C:/Program Files/Anaconda3/Scripts" "C:/Program Files/Anaconda3/Library/bin" "C:/Program Files (x86)/Windows Kits/8.1/Windows Performance Toolkit/" "C:/HashiCorp/Vagrant/bin" "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common" "C:/ProgramData/chocolatey/bin" "C:/Program Files (x86)/sbt/bin" "C:/Program Files/nodejs/" "C:/Program Files/MiKTeX 2.9/miktex/bin/x64/" "D:/Tools/Emacs/emacs-25_3_1/bin" "." "%SystemRoot%/system32" "%SystemRoot%" "%SystemRoot%/System32/Wbem" "%SYSTEMROOT%/System32/WindowsPowerShell/v1.0/" "C:/Users/Ognyan Angelov/AppData/Local/Microsoft/WindowsApps" "C:/Users/Ognyan Angelov/AppData/Roaming/npm" "D:/Tools/ffmpeg/bin" "C:/Users/Ognyan Angelov/AppData/Local/Microsoft/WindowsApps" "D:/Tools/Scripts" "c:/unxutils/usr/local/wbin/" "c:/Program Files/Git/usr/bin/" "c:/Program Files (x86)/scala/bin" "d:/Tools/Emacs/emacs-25_3_1/libexec/emacs/25.3/x86_64-w64-mingw32")))
  '(package-selected-packages
    (quote
-    (company-quickhelp xterm-color shell-pop multi-term helm-company helm-c-yasnippet git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck eshell-z eshell-prompt-extras esh-help diff-hl company-web web-completion-data company-tern company-statistics company-anaconda company auto-yasnippet auto-dictionary ac-ispell smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub let-alist with-editor tern web-beautify livid-mode json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js-doc coffee-mode ein skewer-mode request-deferred auto-complete websocket deferred js2-mode simple-httpd web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode pyenv-mode markdown-toc dash-functional anaconda-mode mmm-mode markdown-mode gh-md csv-mode yapfify pyvenv pytest py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async org-plus-contrib evil-unimpaired f s dash))))
+    (noflet ensime sbt-mode scala-mode command-log-mode company-quickhelp xterm-color shell-pop multi-term helm-company helm-c-yasnippet git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck eshell-z eshell-prompt-extras esh-help diff-hl company-web web-completion-data company-tern company-statistics company-anaconda company auto-yasnippet auto-dictionary ac-ispell smeargle orgit magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit ghub let-alist with-editor tern web-beautify livid-mode json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js-doc coffee-mode ein skewer-mode request-deferred auto-complete websocket deferred js2-mode simple-httpd web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode pyenv-mode markdown-toc dash-functional anaconda-mode mmm-mode markdown-mode gh-md csv-mode yapfify pyvenv pytest py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode pythonic ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async org-plus-contrib evil-unimpaired f s dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
